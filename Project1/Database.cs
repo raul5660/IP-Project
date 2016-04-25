@@ -36,6 +36,7 @@ namespace Project1
                 db.Close();
             }
         }
+
         public static int getUserID(String Username)
         {
             int UserID = -1;
@@ -71,6 +72,7 @@ namespace Project1
             }
             return UserID;
         }
+
         public static String GetUserType(String UserID)
         {
             String Type = null;
@@ -106,6 +108,7 @@ namespace Project1
             }
             return Type;
         }
+
         public static bool SignIn(String Username, String Password)
         {
             Boolean validUser = false;
@@ -139,6 +142,7 @@ namespace Project1
 
             return validUser;
         }
+
         public static HttpCookie CreateUserSession(String Username)
         {
             HttpCookie cookie = new HttpCookie("UserSession");
@@ -146,6 +150,7 @@ namespace Project1
             cookie.Expires = DateTime.Now.AddDays(1);
             return cookie;
         }
+
         public static bool IsSessionValid(HttpCookie Session)
         {
             bool valid = false;
@@ -155,6 +160,7 @@ namespace Project1
             }
             return valid;
         }
+
         public static bool IsValidEmail(string strIn)
         {
             invalid = false;
@@ -172,6 +178,7 @@ namespace Project1
                    @"(?(\[)(\[(\d{1,3}\.){3}\d{1,3}\])|(([0-9a-z][-\w]*[0-9a-z]*\.)+[a-z0-9]{2,17}))$",
                    RegexOptions.IgnoreCase);
         }
+
         private static string DomainMapper(Match match)
         {
             // IdnMapping class with default property values.

@@ -1,18 +1,19 @@
-﻿.navbar-brand {
+﻿@font-face {
     font-family: 'Capture it';
     src: url('../fonts/Capture it.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Capsmall_clean';
+    src: url('../fonts/Capsmall_clean.ttf') format('truetype');
+}
+.navbar-brand {
+    font-family: 'Capture it';
 }
 
 li {
     font-family: 'Capture it';
-    src: url('../fonts/Capture it.ttf') format('truetype');
 }
-
-h1 {
-    font-family: 'Capture it';
-    src: url('../fonts/Capture it.ttf') format('truetype');
-}
-
 
 *, *:before, *:after {
     box-sizing: border-box;
@@ -24,6 +25,17 @@ html {
 
 body {
     background: #c1bdba;
+}
+
+.about {
+    /*font-family: 'Capsmall_clean';*/
+    color: #ffffff;
+    font-size:medium;
+}
+
+.contact {
+    color: #ffffff;
+    font-size:medium;
 }
 
 .body-default {
@@ -96,6 +108,8 @@ a {
 }
 
 h1 {
+    font-family: 'Capture it';
+    src: url('../fonts/Capture it.ttf') format('truetype');
     text-align: center;
     color: #ffffff;
     font-weight: 200;
