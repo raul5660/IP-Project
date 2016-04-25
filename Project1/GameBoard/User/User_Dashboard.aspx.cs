@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Data.SqlClient;
+using System.Configuration;
 
 namespace Project1.GameBoard
 {
@@ -24,6 +26,31 @@ namespace Project1.GameBoard
                     Response.Redirect("Admin.aspx");
                 }
             }
+        }
+
+        protected void FlagSubmit_Click(object sender, EventArgs e)
+        {
+            //SqlConnection db = new SqlConnection(ConfigurationManager.ConnectionStrings["CTFConnectionString"].ToString());
+            //SqlCommand command = new SqlCommand();
+            //command.CommandType = System.Data.CommandType.Text;
+
+            //command.CommandText = $"INSERT [dbo].[Challenge] (Challenge_Answer) VALUES ('{FlagInput.Text}')";
+            //command.Connection = db;
+
+            //db.Open();
+
+            //try
+            //{
+            //    command.ExecuteNonQuery();
+            //}
+            //catch
+            //{
+
+            //}
+            //finally
+            //{
+            //    db.Close();
+            //}
         }
     }
 }
