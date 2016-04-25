@@ -102,12 +102,8 @@
     <Content Include="css\jumbotron.css" />
     <Content Include="Files\explosion3lighter.jpg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
-    <Content Include="GameBoard\Admin\Admin_ModifyUsers.aspx" />
     <Content Include="GameBoard\User\User_Dashboard.aspx" />
-    <Content Include="GameBoard\Admin\Admin_Games.aspx" />
-    <Content Include="GameBoard\Admin\Admin_Categories.aspx" />
-    <Content Include="GameBoard\Admin\Admin_Challenges.aspx" />
-    <Content Include="GameBoard\Admin\Admin_Dashboard.aspx" />
+    <Content Include="GameBoard\Admin.aspx" />
     <Content Include="js\bootstrap.js" />
     <Content Include="js\bootstrap.min.js" />
     <Content Include="js\jquery.js" />
@@ -142,6 +138,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Database.cs" />
+    <Compile Include="GameBoard\Admin.aspx.cs">
+      <DependentUpon>Admin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GameBoard\Admin.aspx.designer.cs">
+      <DependentUpon>Admin.aspx</DependentUpon>
+    </Compile>
     <Compile Include="main.Master.cs">
       <DependentUpon>main.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -156,47 +159,12 @@
     <Compile Include="GameBoard\Site2.Master.designer.cs">
       <DependentUpon>Site2.Master</DependentUpon>
     </Compile>
-    <Compile Include="GameBoard\Admin\Admin_ModifyUsers.aspx.cs">
-      <DependentUpon>Admin_ModifyUsers.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="GameBoard\Admin\Admin_ModifyUsers.aspx.designer.cs">
-      <DependentUpon>Admin_ModifyUsers.aspx</DependentUpon>
-    </Compile>
     <Compile Include="GameBoard\User\User_Dashboard.aspx.cs">
       <DependentUpon>User_Dashboard.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="GameBoard\User\User_Dashboard.aspx.designer.cs">
       <DependentUpon>User_Dashboard.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="GameBoard\Admin\Admin_Games.aspx.cs">
-      <DependentUpon>Admin_Games.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="GameBoard\Admin\Admin_Games.aspx.designer.cs">
-      <DependentUpon>Admin_Games.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="GameBoard\Admin\Admin_Categories.aspx.cs">
-      <DependentUpon>Admin_Categories.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="GameBoard\Admin\Admin_Categories.aspx.designer.cs">
-      <DependentUpon>Admin_Categories.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="GameBoard\Admin\Admin_Challenges.aspx.cs">
-      <DependentUpon>Admin_Challenges.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="GameBoard\Admin\Admin_Challenges.aspx.designer.cs">
-      <DependentUpon>Admin_Challenges.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="GameBoard\Admin\Admin_Dashboard.aspx.cs">
-      <DependentUpon>Admin_Dashboard.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="GameBoard\Admin\Admin_Dashboard.aspx.designer.cs">
-      <DependentUpon>Admin_Dashboard.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="default.aspx.cs">
