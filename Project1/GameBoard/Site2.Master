@@ -32,10 +32,10 @@
           <a class="navbar-brand" href="/Default.aspx">CTF</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav navbar-right">
-            <li><a href="#">Dashboard</a></li>
-            <li><a href="#">Profile</a></li>
-            <li><a href="#">Help</a></li>
+          <ul class="nav navbar-nav navbar-right tab-group">
+            <li class="tab"><a href="#Dashboard">Dashboard</a></li>
+            <li class="tab"><a href="#Profile">Profile</a></li>
+            <li class="tab"><a href="#Help">Help</a></li>
             <li><asp:LinkButton ID="LogoutButton" runat="server">Logout</asp:LinkButton></li>
           </ul>
         </div>
@@ -45,7 +45,7 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
-          <ul class="nav nav-sidebar">
+          <ul class="nav nav-sidebar tab-group" >
               <asp:ContentPlaceHolder ID="LeftNavBarContentPlaceHolder" runat="server"></asp:ContentPlaceHolder>
           </ul>
         </div>
@@ -59,5 +59,6 @@
     <script src="../js/jquery.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/login.js"></script>
 </body>
 </html>
