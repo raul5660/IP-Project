@@ -23,7 +23,7 @@ namespace Project1.GameBoard
                 }
                 else if (type.ToLower() == "admin")
                 {
-                    Response.Redirect("Admin.aspx");
+                    Response.Redirect("../Admin.aspx");
                 }
             }
         }

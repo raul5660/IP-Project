@@ -195,5 +195,41 @@ namespace Project1
             }
             return match.Groups[1].Value + domainName;
         }
+
+        //isValidFlag function checks the user entered flag
+        //with the correct answer in the database
+        public static bool isValidFlag(String flag)
+        {
+            Boolean validFlag = false;
+
+            SqlConnection db = new SqlConnection(ConfigurationManager.ConnectionStrings["CTFConnectionString"].ToString());
+            SqlCommand command = new SqlCommand();
+            command.CommandType = System.Data.CommandType.Text;
+
+            command.CommandText = $"SELECT [Challenge_Answer] FROM [dbo].[Challenge] WHERE [Challenge_Answer] = '{flag}'";
+            command.Connection = db;
+
+            db.Open();
+
+            try
+            {
+                using (SqlDataReader rdr = command.ExecuteReader())
+                {
+                    if (rdr.HasRows)
+                    {
+                        validFlag = true;
+                    }
+                }
+            }
+            catch
+            {
+            }
+            finally
+            {
+                db.Close();
+            }
+
+            return validFlag;
+        }
     }
 }
