@@ -28,7 +28,7 @@ namespace Project1
                     "user");
 
                 // will redirect to appropriate page.
-                Response.Redirect(@"GameBoard\User\User_Dashboard.aspx");
+                Response.Redirect(@"GameBoard\User.aspx");
             }
         }
 
@@ -46,7 +46,7 @@ namespace Project1
                 // add cookie
                 Response.Cookies.Add(cookie);
                 // will redirect to appropriate page.
-                Response.Redirect(@"GameBoard\User\User_Dashboard.aspx");
+                Response.Redirect(@"GameBoard\User.aspx");
             }
         }
     }

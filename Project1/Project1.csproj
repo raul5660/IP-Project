@@ -104,6 +104,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="GameBoard\User\User_Dashboard.aspx" />
     <Content Include="GameBoard\Admin.aspx" />
+    <Content Include="GameBoard\User.aspx" />
     <Content Include="js\bootstrap.js" />
     <Content Include="js\bootstrap.min.js" />
     <Content Include="js\jquery.js" />
@@ -144,6 +145,13 @@
     </Compile>
     <Compile Include="GameBoard\Admin.aspx.designer.cs">
       <DependentUpon>Admin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GameBoard\User.aspx.cs">
+      <DependentUpon>User.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GameBoard\User.aspx.designer.cs">
+      <DependentUpon>User.aspx</DependentUpon>
     </Compile>
     <Compile Include="main.Master.cs">
       <DependentUpon>main.Master</DependentUpon>

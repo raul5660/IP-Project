@@ -142,7 +142,7 @@ namespace Project1
         public static HttpCookie CreateUserSession(String Username)
         {
             HttpCookie cookie = new HttpCookie("UserSession");
-            cookie["uid"] = getUserID(Username).ToString();
+            cookie.Value = getUserID(Username).ToString();
             cookie.Expires = DateTime.Now.AddDays(1);
             return cookie;
         }

@@ -4,7 +4,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title></title>
+    <title>CTF Armory</title>
     <!-- Bootstrap -->
     <link href="../css/bootstrap.min.css" rel="stylesheet" />
 
@@ -29,14 +29,14 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="Default.aspx">CTF</a>
+          <a class="navbar-brand" href="Default.aspx">CTF Armory</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right tab-group">
             <li class="tab"><a href="#Dashboard">Dashboard</a></li>
             <li class="tab"><a href="#Profile">Profile</a></li>
             <li class="tab"><a href="#Help">Help</a></li>
-            <li><asp:LinkButton ID="LogoutButton" runat="server">Logout</asp:LinkButton></li>
+            <li><asp:LinkButton ID="LogoutButton" runat="server" OnClick="LogoutButton_Click">Logout</asp:LinkButton></li>
           </ul>
         </div>
       </div>

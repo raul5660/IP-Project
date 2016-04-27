@@ -13,5 +13,11 @@ namespace Project1.GameBoard
         {
             
         }
+
+        protected void LogoutButton_Click(object sender, EventArgs e)
+        {
+            Response.Cookies.Get("UserSession").Expires = DateTime.Now;
+            Response.Redirect("../Default.aspx");
+        }
     }
 }
