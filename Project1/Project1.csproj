@@ -102,7 +102,6 @@
     <Content Include="css\jumbotron.css" />
     <Content Include="Files\explosion3lighter.jpg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
-    <Content Include="GameBoard\User\User_Dashboard.aspx" />
     <Content Include="GameBoard\Admin.aspx" />
     <Content Include="GameBoard\User.aspx" />
     <Content Include="js\bootstrap.js" />
@@ -157,6 +156,7 @@
     <Compile Include="GameBoard\User.aspx.designer.cs">
       <DependentUpon>User.aspx</DependentUpon>
     </Compile>
+    <Compile Include="GameBoard\User.cs" />
     <Compile Include="main.Master.cs">
       <DependentUpon>main.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -170,13 +170,6 @@
     </Compile>
     <Compile Include="GameBoard\Site2.Master.designer.cs">
       <DependentUpon>Site2.Master</DependentUpon>
-    </Compile>
-    <Compile Include="GameBoard\User\User_Dashboard.aspx.cs">
-      <DependentUpon>User_Dashboard.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="GameBoard\User\User_Dashboard.aspx.designer.cs">
-      <DependentUpon>User_Dashboard.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="default.aspx.cs">

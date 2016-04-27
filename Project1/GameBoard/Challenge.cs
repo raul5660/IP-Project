@@ -58,5 +58,12 @@ namespace Project1.GameBoard
             get { return this.ChallengeQuestion; }
             set { this.ChallengeQuestion = value; }
         }
+
+        public override bool Equals(object obj)
+        {
+            Challenge tmp = (Challenge)obj;
+
+            return this.ChallengeID == tmp.ChallengeID;
+        }
     }
 }

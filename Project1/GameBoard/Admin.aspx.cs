@@ -15,9 +15,21 @@ namespace Project1.GameBoard
             {
                 Session["UID"] = Request.Cookies.Get("UserSession").Value.ToString();
                 ProfileFormView.ChangeMode(FormViewMode.Edit);
-                if (!Database.IsSessionValid(Request.Cookies.Get("UserSession")))
+                if (Database.IsSessionValid(Request.Cookies.Get("UserSession")))
                 {
-                    Response.Redirect("../Default.aspx");
+                    String type = Database.GetUserType(Session["UID"].ToString());
+                    if (type == null)
+                    {
+                        Response.Redirect("../Default.aspx");
+                    }
+                    else if (type.ToLower() == "user")
+                    {
+                        Response.Redirect("./User.aspx");
+                    }
+                    else if (type.ToLower() != "admin")
+                    {
+                        Response.Redirect("../Default.aspx");
+                    }
                 }
             } catch
             {

@@ -12,6 +12,7 @@ namespace Project1.GameBoard
     public partial class WebForm1 : System.Web.UI.Page
     {
         private static System.Text.StringBuilder html;
+        public static User user;
         protected void Page_Load(object sender, EventArgs e)
         {
             try
@@ -30,6 +31,7 @@ namespace Project1.GameBoard
                     {
                         Response.Redirect("./Admin.aspx");
                     }
+                    user = Database.getUserByID(CookieSession.Value.ToString());
                     html = new System.Text.StringBuilder();
                     foreach (int GID in Database.getGameIDs())
                     {
