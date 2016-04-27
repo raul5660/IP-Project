@@ -466,6 +466,7 @@
         <%--Help--%>
         <div id="Help" style="display: none;">
             <h1 class="page-header">Help</h1>
+            <p>Not sure why you need help if you're an admin!!!</p>
         </div>
     </div>
 </asp:Content>

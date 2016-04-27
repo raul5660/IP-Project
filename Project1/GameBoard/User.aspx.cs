@@ -11,20 +11,29 @@ namespace Project1.GameBoard
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            HttpCookie Session = Request.Cookies.Get("UserSession");
-            if (Database.IsSessionValid(Session))
+            try
             {
-                String type = Database.GetUserType(Session.Value.ToString());
-                if (type == null)
+                HttpCookie CookieSession = Request.Cookies.Get("UserSession");
+                Session["UID"] = CookieSession.Value.ToString();
+                ProfileFormView.ChangeMode(FormViewMode.Edit);
+                if (Database.IsSessionValid(CookieSession))
+                {
+                    String type = Database.GetUserType(CookieSession.Value.ToString());
+                    if (type == null)
+                    {
+                        Response.Redirect("../Default.aspx");
+                    }
+                    else if (type.ToLower() == "admin")
+                    {
+                        Response.Redirect("./Admin.aspx");
+                    }
+                }
+                else
                 {
                     Response.Redirect("../Default.aspx");
                 }
-                else if (type.ToLower() == "admin")
-                {
-                    Response.Redirect("Admin.aspx");
-                }
             }
-            else
+            catch
             {
                 Response.Redirect("../Default.aspx");
             }
