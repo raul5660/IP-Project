@@ -108,6 +108,7 @@
     <Content Include="js\bootstrap.js" />
     <Content Include="js\bootstrap.min.js" />
     <Content Include="js\jquery.js" />
+    <Content Include="js\loadGameData.js" />
     <Content Include="js\login.js" />
     <Content Include="packages.config" />
     <Content Include="ApplicationInsights.config">
@@ -146,6 +147,9 @@
     <Compile Include="GameBoard\Admin.aspx.designer.cs">
       <DependentUpon>Admin.aspx</DependentUpon>
     </Compile>
+    <Compile Include="GameBoard\Category.cs" />
+    <Compile Include="GameBoard\Challenge.cs" />
+    <Compile Include="GameBoard\Game.cs" />
     <Compile Include="GameBoard\User.aspx.cs">
       <DependentUpon>User.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

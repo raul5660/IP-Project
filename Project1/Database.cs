@@ -188,5 +188,158 @@ namespace Project1
             }
             return match.Groups[1].Value + domainName;
         }
+
+        public static List<int> getGameIDs()
+        {
+            List<int> GameIDs = new List<int>();
+            SqlConnection db = new SqlConnection(ConfigurationManager.ConnectionStrings["CTFConnectionString"].ToString());
+            SqlCommand command = new SqlCommand();
+            command.CommandType = System.Data.CommandType.Text;
+
+            command.CommandText = $"SELECT [Game_ID] FROM [dbo].[Game]";
+            command.Connection = db;
+
+            db.Open();
+
+            try
+            {
+                using (SqlDataReader rdr = command.ExecuteReader())
+                {
+                    if (rdr.HasRows)
+                    {
+                        while (rdr.Read())
+                        {
+                            IDataRecord record = ((IDataRecord)rdr);
+                            GameIDs.Add(Convert.ToInt32(record[0]));
+                        }
+                    }
+                }
+            }
+            catch
+            {
+            }
+            finally
+            {
+                db.Close();
+            }
+            return GameIDs;
+        }
+
+        public static String getGameNameFromGameID(int GameID)
+        {
+            String GameName = null;
+            SqlConnection db = new SqlConnection(ConfigurationManager.ConnectionStrings["CTFConnectionString"].ToString());
+            SqlCommand command = new SqlCommand();
+            command.CommandType = System.Data.CommandType.Text;
+
+            command.CommandText = $"SELECT TOP 1 [Game_Name] FROM [dbo].[Game] WHERE [Game_ID] = {GameID}";
+            command.Connection = db;
+
+            db.Open();
+
+            try
+            {
+                using (SqlDataReader rdr = command.ExecuteReader())
+                {
+                    if (rdr.HasRows)
+                    {
+                        while (rdr.Read())
+                        {
+                            IDataRecord record = ((IDataRecord)rdr);
+                            GameName = record[0].ToString();
+                        }
+                    }
+                }
+            }
+            catch
+            {
+            }
+            finally
+            {
+                db.Close();
+            }
+            return GameName;
+        }
+
+        public static List<GameBoard.Category> getCategoriesFromGameID(int GameID)
+        {
+            List<GameBoard.Category> CategoriesList = new List<GameBoard.Category>();
+            SqlConnection db = new SqlConnection(ConfigurationManager.ConnectionStrings["CTFConnectionString"].ToString());
+            SqlCommand command = new SqlCommand();
+            command.CommandType = System.Data.CommandType.Text;
+
+            command.CommandText = $"SELECT [Category_ID],[Category_Name] FROM [dbo].[Category] WHERE [Game_ID] = {GameID}";
+            command.Connection = db;
+
+            db.Open();
+
+            try
+            {
+                using (SqlDataReader rdr = command.ExecuteReader())
+                {
+                    if (rdr.HasRows)
+                    {
+                        while (rdr.Read())
+                        {
+                            IDataRecord record = ((IDataRecord)rdr);
+                            CategoriesList.Add(new GameBoard.Category(record[1].ToString(),Convert.ToInt32(record[0]), GameID));
+                        }
+                    }
+                }
+            }
+            catch
+            {
+            }
+            finally
+            {
+                db.Close();
+            }
+
+            return CategoriesList;
+        }
+
+        public static List<GameBoard.Challenge> getChallengesFromGameIDAndCategoryID(int CategoryID)
+        {
+            List <GameBoard.Challenge> Challenges = new List<GameBoard.Challenge>();
+            SqlConnection db = new SqlConnection(ConfigurationManager.ConnectionStrings["CTFConnectionString"].ToString());
+            SqlCommand command = new SqlCommand();
+            command.CommandType = System.Data.CommandType.Text;
+
+            command.CommandText = $"SELECT [Challenge_ID],[Challenge_Name],[Challenge_Points],[Challenge_Answer],[Challenge_Solution],[Challenge_Question] FROM[CTF].[dbo].[Challenge] WHERE[Category_ID] = {CategoryID} ORDER BY [Challenge_Points]";
+            command.Connection = db;
+
+            db.Open();
+
+            try
+            {
+                using (SqlDataReader rdr = command.ExecuteReader())
+                {
+                    if (rdr.HasRows)
+                    {
+                        while (rdr.Read())
+                        {
+                            IDataRecord record = ((IDataRecord)rdr);
+                            Challenges.Add(new GameBoard.Challenge(
+                                Convert.ToInt32(record[0]), //ID
+                                record[1].ToString(),       //Name
+                                Convert.ToInt32(record[2]), //Points
+                                record[3].ToString(),       //Answer
+                                record[4].ToString(),       //Solution
+                                record[5].ToString()        //Question
+                                ));
+                        }
+                    }
+                }
+            }
+            catch
+            {
+            }
+            finally
+            {
+                db.Close();
+            }
+
+            return Challenges;
+        }
     }
 }

@@ -15,24 +15,11 @@
     <asp:SqlDataSource ID="GamesSelect" runat="server" ConnectionString="<%$ ConnectionStrings:CTFConnectionString %>" SelectCommand="SELECT * FROM [Game]"></asp:SqlDataSource>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="tab-content">
+    <div id="MainContentHolder" class="tab-content">
         <%--Dashboard--%>
         <div id="Dashboard">
             <h1 class="page-header">Dashboard</h1>
         </div>
-        <asp:ListView ID="GameMainView" runat="server" DataKeyNames="Game_ID" DataSourceID="GameSelectForGameMainView">
-        <EmptyDataTemplate>
-            No data was returned.
-        </EmptyDataTemplate>
-        <ItemSeparatorTemplate>
-        </ItemSeparatorTemplate>
-        <ItemTemplate>
-            <div id='<%# Eval("Game_ID") %>' style="display: none;">
-                <h1 class="page-header"><%# Eval("Game_Name") %></h1>
-            </div>
-        </ItemTemplate>
-    </asp:ListView>
-    <asp:SqlDataSource ID="GameSelectForGameMainView" runat="server" ConnectionString="<%$ ConnectionStrings:CTFConnectionString %>" SelectCommand="SELECT * FROM [Game]"></asp:SqlDataSource>
         <%--Profile--%>
         <div id="Profile" style="display: none;">
             <h1 class="page-header">Profile</h1>
@@ -94,4 +81,10 @@
             <h1 class="page-header">Help</h1>
         </div>
     </div>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="../js/jquery.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/loadGameData.js"></script>
+    <script src="../js/login.js"></script>
 </asp:Content>

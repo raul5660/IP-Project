@@ -469,4 +469,9 @@
             <p>Not sure why you need help if you're an admin!!!</p>
         </div>
     </div>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="../js/jquery.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/login.js"></script>
 </asp:Content>

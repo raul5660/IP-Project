@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Web;
+using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -9,6 +11,7 @@ namespace Project1.GameBoard
 {
     public partial class WebForm1 : System.Web.UI.Page
     {
+        private static System.Text.StringBuilder html;
         protected void Page_Load(object sender, EventArgs e)
         {
             try
@@ -27,6 +30,11 @@ namespace Project1.GameBoard
                     {
                         Response.Redirect("./Admin.aspx");
                     }
+                    html = new System.Text.StringBuilder();
+                    foreach (int GID in Database.getGameIDs())
+                    {
+                        html.Append(new Game(GID).toHTML());
+                    }
                 }
                 else
                 {
@@ -37,6 +45,11 @@ namespace Project1.GameBoard
             {
                 Response.Redirect("../Default.aspx");
             }
+        }
+        [WebMethod]
+        public static String LoadGameData()
+        {
+            return html.ToString();
         }
     }
 }

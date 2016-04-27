@@ -45,7 +45,7 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
-          <ul class="nav nav-sidebar tab-group">
+          <ul class="nav nav-sidebar tab-group" id="MainSideNavBar">
               <asp:ContentPlaceHolder ID="LeftNavBarContentPlaceHolder" runat="server"></asp:ContentPlaceHolder>
           </ul>
         </div>
@@ -55,10 +55,5 @@
       </div>
     </div>
     </form>
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="../js/jquery.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="../js/bootstrap.min.js"></script>
-    <script src="../js/login.js"></script>
 </body>
 </html>

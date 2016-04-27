@@ -31,24 +31,6 @@ namespace Project1.GameBoard {
         protected global::System.Web.UI.WebControls.SqlDataSource GamesSelect;
         
         /// <summary>
-        /// GameMainView control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ListView GameMainView;
-        
-        /// <summary>
-        /// GameSelectForGameMainView control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource GameSelectForGameMainView;
-        
-        /// <summary>
         /// ProfileFormView control.
         /// </summary>
         /// <remarks>
