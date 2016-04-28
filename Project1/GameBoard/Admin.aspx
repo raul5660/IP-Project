@@ -35,7 +35,7 @@
                                 <asp:Label ID="UserIDLabel" runat="server" Text='<%# Bind("User_ID") %>'></asp:Label>
                             </ItemTemplate>
                             <FooterTemplate>
-                                <asp:LinkButton ID="InsertUserLinkButton" runat="server" ValidationGroup="InsertUserValidationGroup">Insert</asp:LinkButton>
+                                <asp:LinkButton ID="InsertUserLinkButton" runat="server" ValidationGroup="InsertUserValidationGroup" OnClick="InsertUserButton_Click">Insert</asp:LinkButton>
                             </FooterTemplate>
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="Username" SortExpression="User_UserName">
@@ -159,7 +159,7 @@
                                 <asp:Label ID="GameIDLabel" runat="server" Text='<%# Bind("Game_ID") %>'></asp:Label>
                             </ItemTemplate>
                             <FooterTemplate>
-                                <asp:LinkButton ID="InsertGameButton" runat="server" ValidationGroup="InsertGameValidationGroup">Insert</asp:LinkButton>
+                                <asp:LinkButton ID="InsertGameButton" runat="server" ValidationGroup="InsertGameValidationGroup" OnClick="InsertGameButton_Click">Insert</asp:LinkButton>
                             </FooterTemplate>
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="Name" SortExpression="Game_Name">
@@ -217,12 +217,12 @@
                                 <asp:Label ID="CategoryIDLabel" runat="server" Text='<%# Bind("Category_ID") %>'></asp:Label>
                             </ItemTemplate>
                             <FooterTemplate>
-                                <asp:LinkButton ID="InsertCategoryButton" runat="server" ValidationGroup="InsertCategoryValidationGroup">Insert</asp:LinkButton>
+                                <asp:LinkButton ID="InsertCategoryButton" runat="server" ValidationGroup="InsertCategoryValidationGroup" OnClick="InsertCategoryButton_Click">Insert</asp:LinkButton>
                             </FooterTemplate>
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="Game ID" SortExpression="Game_ID">
                             <EditItemTemplate>
-                                <asp:DropDownList ID="InsertGameID" runat="server" DataSourceID="GameIDSqlDataSource" DataTextField="Game_Name" DataValueField="Game_ID" SelectedValue='<%# Bind("Game_ID") %>'></asp:DropDownList>
+                                <asp:DropDownList ID="EditGameID" runat="server" DataSourceID="GameIDSqlDataSource" DataTextField="Game_Name" DataValueField="Game_ID" SelectedValue='<%# Bind("Game_ID") %>'></asp:DropDownList>
                             </EditItemTemplate>
                             <ItemTemplate>
                                 <asp:Label ID="GameID" runat="server" Text='<%# Bind("Game_Name") %>'></asp:Label>
@@ -274,7 +274,7 @@
         <div id="Challenges" style="display: none;">
             <h1 class="page-header">Challenges</h1>
             <div class="table-responsive">
-                <asp:GridView ID="GridView2" runat="server" AutoGenerateColumns="False" DataKeyNames="Challenge_ID" DataSourceID="ChallengeSqlDataSource" CssClass="table table-striped" ShowFooter="True">
+                <asp:GridView ID="ChallengesGridView" runat="server" AutoGenerateColumns="False" DataKeyNames="Challenge_ID" DataSourceID="ChallengeSqlDataSource" CssClass="table table-striped" ShowFooter="True">
                     <Columns>
                         <asp:TemplateField ShowHeader="False">
                             <EditItemTemplate>
@@ -294,7 +294,7 @@
                                 <asp:Label ID="ChallengeIDLabel" runat="server" Text='<%# Bind("Challenge_ID") %>'></asp:Label>
                             </ItemTemplate>
                             <FooterTemplate>
-                                <asp:LinkButton ID="InsertChallenge" runat="server" ValidationGroup="InsertChallengeValidationGroup">Insert</asp:LinkButton>
+                                <asp:LinkButton ID="InsertChallenge" runat="server" ValidationGroup="InsertChallengeValidationGroup" OnClick="InsertChallenge_Click">Insert</asp:LinkButton>
                             </FooterTemplate>
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="Category ID" SortExpression="Category_ID">
