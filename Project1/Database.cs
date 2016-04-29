@@ -427,5 +427,29 @@ namespace Project1
             }
             return user;
         }
+
+        public static void ChallengeSolved(int UserID, int ChallengeID)
+        {
+            SqlConnection db = new SqlConnection(ConfigurationManager.ConnectionStrings["CTFConnectionString"].ToString());
+            SqlCommand command = new SqlCommand();
+            command.CommandType = System.Data.CommandType.Text;
+
+            command.CommandText = $"INSERT INTO [dbo].[Solved] ([User_ID],[Challenge_ID]) VALUES ({UserID},{ChallengeID})";
+            command.Connection = db;
+
+            db.Open();
+
+            try
+            {
+                command.ExecuteNonQuery();
+            }
+            catch
+            {
+            }
+            finally
+            {
+                db.Close();
+            }
+        }
     }
 }

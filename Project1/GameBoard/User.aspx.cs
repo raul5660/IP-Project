@@ -12,6 +12,7 @@ namespace Project1.GameBoard
     public partial class WebForm1 : System.Web.UI.Page
     {
         private static System.Text.StringBuilder html;
+        private static List<Game> GameList;
         public static User user;
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -33,9 +34,11 @@ namespace Project1.GameBoard
                     }
                     user = Database.getUserByID(CookieSession.Value.ToString());
                     html = new System.Text.StringBuilder();
+                    GameList = new List<Game>();
                     foreach (int GID in Database.getGameIDs())
                     {
-                        html.Append(new Game(GID).toHTML());
+                        GameList.Add(new Game(GID));
+                        html.Append(GameList.Last().toHTML());
                     }
                 }
                 else
@@ -53,5 +56,29 @@ namespace Project1.GameBoard
         {
             return html.ToString();
         }
+
+        [WebMethod]
+        public static String SubmitFlag(String ChallengeID, String Flag)
+        {
+            foreach(Game game in GameList)
+            {
+                foreach(Category category in game.Categories)
+                {
+                    foreach(Challenge challenge in category.Challenges)
+                    {
+                        if (challenge.ID == Convert.ToInt32(ChallengeID))
+                        {
+                            if(challenge.Answer == Flag)
+                            {
+                                Database.ChallengeSolved(user.ID,challenge.ID);
+                                return "true";
+                            }
+                        }
+                    }
+                }
+            }
+            return "false";
+        }
+
     }
 }

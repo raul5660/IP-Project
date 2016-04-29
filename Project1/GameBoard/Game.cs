@@ -77,7 +77,7 @@ namespace Project1.GameBoard
                         }
                         else
                         {
-                            html.Append($"<td align=\"center\" class=\"tab\"><a href=\"#{RemoveSpecialCharacters(category.Challenges[i].Name)}\">{category.Challenges[i].Points}</a></td>");
+                            html.Append($"<td align=\"center\" id=\"{category.Challenges[i].ID}S\" class=\"tab\"><a href=\"#{RemoveSpecialCharacters(category.Challenges[i].Name)}\">{category.Challenges[i].Points}</a></td>");
                         }
                     }
                     catch { }
@@ -97,11 +97,16 @@ namespace Project1.GameBoard
                     html.Append($"<p>{challenge.Question}</p>");
                     if (!WebForm1.user.SolvedChallenges.Contains(challenge))
                     {
-                        html.Append($"<div class=\"form-inline\"><div class=\"form-group\"><label class=\"sr-only\" for=\"FlagSubmission\">Flag</label><input type=\"text\" class=\"form-control\" id=\"FlagSubmission\" placeholder=\"Flag\"></div><button type=\"button\" class=\"btn btn-default\">Submit</button><button type=\"button\" class=\"btn btn-info\" data-toggle=\"collapse\" data-target=\"#{RemoveSpecialCharacters(challenge.Name)}Solution\">Need Help?</button></div>");
+                        html.Append("<div class=\"form-inline\">");
+                        html.Append("<div class=\"form-group\">");
+                        html.Append("<label class=\"sr-only\" for=\"FlagSubmission\">Flag</label>");
+                        html.Append($"<input type=\"text\" class=\"form-control\" id=\"{challenge.ID}Submission\" placeholder=\"Flag\"></div>");
+                        html.Append($"<button type=\"button\" class=\"btn btn-default\" id=\"Submission\" data-target=\"{challenge.ID}\">Submit</button>");
+                        html.Append($"<button type=\"button\" class=\"btn btn-info\" data-toggle=\"collapse\" data-target=\"#{RemoveSpecialCharacters(challenge.Name)}Solution\">Need Help?</button></div>");
                     }
                     else
                     {
-                        html.Append($"<div class=\"form-inline\"><div class=\"form-group\"><label class=\"sr-only\" for=\"FlagSubmission\">Flag</label><input type=\"text\" class=\"form-control\" id=\"FlagSubmission\" placeholder=\"{challenge.Answer}\" disabled=\"disabled\"></div><button type=\"button\" class=\"btn btn-info\" data-toggle=\"collapse\" data-target=\"#{RemoveSpecialCharacters(challenge.Name)}Solution\">Need Help?</button></div>");
+                        html.Append($"<div class=\"form-inline\"><div class=\"form-group\"><label class=\"sr-only\" for=\"FlagSubmission\">Flag</label><input type=\"text\" class=\"form-control\" id=\"{challenge.ID}Submission\" placeholder=\"{challenge.Answer}\" disabled=\"disabled\"></div><button type=\"button\" class=\"btn btn-info\" data-toggle=\"collapse\" data-target=\"#{RemoveSpecialCharacters(challenge.Name)}Solution\">Need Help?</button></div>");
                     }
                     html.Append($"<div id=\"{RemoveSpecialCharacters(challenge.Name)}Solution\" class=\"collapse\"><h2>Solution</h1>{challenge.Solution}</div>");
                     html.Append("</div>");
