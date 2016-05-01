@@ -16,13 +16,17 @@
                     $(this).parent().siblings().removeClass('active');
 
                     target = $(this).attr('href');
-
                     $('.tab-content > div').not(target).hide();
+                    localStorage.setItem('show', target);
 
                     $(target).fadeIn(600);
 
                 });
-                var tmp = 0;
+                var show = localStorage.getItem('show');
+                if (show) {
+                    $('#Dashboard').fadeOut(500);
+                    $(show).fadeIn(500);
+                }
                 $(".form-inline #Submission").on('click', function (e) {
                     var target = $(this).attr('data-target');
                     var flag = $('#' + target + 'Submission').val();
@@ -35,14 +39,16 @@
                         dataType: "json",
                         success: function (data) {
                             if (data.d == 'true') {
+                                $('#' + target + 'S').addClass("success")
                                 $('#' + target + 'Submission').prop('disabled', true);
                                 $('#' + target + 'Submission').parent().addClass("has-success");
                             } else {
-                                $('#' + target + 'S').addClass("success")
                                 $('#' + target + 'Submission').parent().addClass("has-error");
                             }
                         },
-                        error: function (e) { },
+                        error: function (e) {
+                            $('#' + target + 'Submission').parent().addClass("has-error");
+                        },
                     });
                 });
             },
@@ -52,4 +58,3 @@
         });
     });
 });
-
