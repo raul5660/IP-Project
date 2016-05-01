@@ -1,19 +1,18 @@
-﻿@font-face {
+﻿.navbar-brand {
     font-family: 'Capture it';
     src: url('../fonts/Capture it.ttf') format('truetype');
 }
 
-@font-face {
-    font-family: 'Capsmall_clean';
-    src: url('../fonts/Capsmall_clean.ttf') format('truetype');
-}
-.navbar-brand {
-    font-family: 'Capture it';
-}
-
 li {
     font-family: 'Capture it';
+    src: url('../fonts/Capture it.ttf') format('truetype');
 }
+
+h1 {
+    font-family: 'Capture it';
+    src: url('../fonts/Capture it.ttf') format('truetype');
+}
+
 
 *, *:before, *:after {
     box-sizing: border-box;
@@ -27,23 +26,12 @@ body {
     background: #c1bdba;
 }
 
-.about {
-    /*font-family: 'Capsmall_clean';*/
-    color: #ffffff;
-    font-size:medium;
-}
-
-.contact {
-    color: #ffffff;
-    font-size:medium;
-}
-
 .body-default {
     background-image: url('../Files/explosion3lighter.jpg');
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
-    background-attachment:fixed;
+    background-attachment: fixed;
 }
 
 a {
@@ -57,6 +45,8 @@ a {
         color: #179b77;
     }
 
+
+/*styling for modal popup*/
 .form {
     background: rgba(30, 30, 30, 0.9);
     padding: 25px;
@@ -108,8 +98,6 @@ a {
 }
 
 h1 {
-    font-family: 'Capture it';
-    src: url('../fonts/Capture it.ttf') format('truetype');
     text-align: center;
     color: #ffffff;
     font-weight: 200;
@@ -224,3 +212,4 @@ textarea {
     margin-top: -20px;
     text-align: right;
 }
+/* End modal styling */
