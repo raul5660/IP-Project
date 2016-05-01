@@ -1,5 +1,4 @@
 ﻿$(document).ready(function () {
-    // console.log() 
     $("#MainSideNavBar a").each(function (index) {
         $.ajax({
             type: "POST",
