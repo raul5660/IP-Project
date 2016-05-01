@@ -39,7 +39,16 @@ $('.tab a').on('click', function (e) {
     target = $(this).attr('href');
 
     $('.tab-content > div').not(target).hide();
+    localStorage.setItem('show', target);
 
     $(target).fadeIn(600);
 
+});
+
+$(document).ready(function () {
+    var show = localStorage.getItem('show');
+    if (show) {
+        $('#Dashboard').fadeOut(500);
+        $(show).fadeIn(500);
+    }
 });
