@@ -11,7 +11,6 @@ namespace Project1.GameBoard
 {
     public partial class WebForm1 : System.Web.UI.Page
     {
-        private static System.Text.StringBuilder html;
         private static List<Game> GameList;
         public static User user;
         protected void Page_Load(object sender, EventArgs e)
@@ -33,12 +32,10 @@ namespace Project1.GameBoard
                         Response.Redirect("./Admin.aspx");
                     }
                     user = Database.getUserByID(CookieSession.Value.ToString());
-                    html = new System.Text.StringBuilder();
                     GameList = new List<Game>();
                     foreach (int GID in Database.getGameIDs())
                     {
                         GameList.Add(new Game(GID));
-                        html.Append(GameList.Last().toHTML());
                     }
                 }
                 else
@@ -52,9 +49,16 @@ namespace Project1.GameBoard
             }
         }
         [WebMethod]
-        public static String LoadGameData()
+        public static String LoadGameData(String GameID)
         {
-            return html.ToString();
+            foreach(Game game in GameList)
+            {
+                if (game.ID.ToString() == GameID.Replace("#",""))
+                {
+                    return game.toHTML();
+                }
+            }
+            return "";
         }
 
         [WebMethod]

@@ -50,8 +50,8 @@ namespace Project1.GameBoard
 
         protected void InsertGameButton_Click(object sender, EventArgs e)
         {
-            GameIDSqlDataSource.InsertParameters["Game_Name"].DefaultValue = ((TextBox)GamesGridView.FooterRow.FindControl("InsertGameName")).Text;
-            GameIDSqlDataSource.Insert();
+            GamesSqlDataSource.InsertParameters["Game_Name"].DefaultValue = ((TextBox)GamesGridView.FooterRow.FindControl("InsertGameName")).Text;
+            GamesSqlDataSource.Insert();
         }
 
         protected void InsertCategoryButton_Click(object sender, EventArgs e)
