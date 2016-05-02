@@ -475,8 +475,19 @@
     <script src="../js/jquery.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="../js/bootstrap.min.js"></script>
-    <script src="../js/login.js"></script>
     <script src="../js/canvasjs.min.js"></script>
     <script src="../js/drawAdminGraphs.js"></script>
-    <script>$(document).ready(function () { UsersByPoints() });</script>
+    <script>
+        $(document).ready(function () {
+            UsersByPoints()
+            var show = localStorage.getItem('show');
+            if (show) {
+                if (!$(show).is(":visible")) {
+                    $('#Dashboard').fadeOut(500);
+                    $(show).fadeIn(500);
+                }
+            }
+        });
+
+    </script>
 </asp:Content>

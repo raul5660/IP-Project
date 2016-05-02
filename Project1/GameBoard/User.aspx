@@ -96,7 +96,6 @@
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="../js/bootstrap.min.js"></script>
     <script src="../js/loadGameData.js"></script>
-    <script src="../js/login.js"></script>
     <script src="../js/canvasjs.min.js"></script>
     <script src="../js/drawUserGraphs.js"></script>
 </asp:Content>

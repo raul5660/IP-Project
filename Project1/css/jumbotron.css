@@ -1,16 +1,18 @@
-﻿.navbar-brand {
+﻿@font-face {
     font-family: 'Capture it';
     src: url('../fonts/Capture it.ttf') format('truetype');
+}
+
+.navbar-brand {
+    font-family: 'Capture it';
 }
 
 li {
     font-family: 'Capture it';
-    src: url('../fonts/Capture it.ttf') format('truetype');
 }
 
 h1 {
     font-family: 'Capture it';
-    src: url('../fonts/Capture it.ttf') format('truetype');
 }
 
 
