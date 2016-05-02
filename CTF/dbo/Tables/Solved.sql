@@ -1,0 +1,21 @@
+﻿CREATE TABLE [dbo].[Solved](
+	[Solved_ID] [int] IDENTITY(1,1) NOT NULL,
+	[User_ID] [int] NOT NULL,
+	[Challenge_ID] [int] NOT NULL,
+ CONSTRAINT [PK_Solved] PRIMARY KEY CLUSTERED 
+(
+	[Solved_ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+ALTER TABLE [dbo].[Solved]  WITH CHECK ADD  CONSTRAINT [FK_Solved_Challenge] FOREIGN KEY([Challenge_ID])
+REFERENCES [dbo].[Challenge] ([Challenge_ID])
+GO
+
+ALTER TABLE [dbo].[Solved] CHECK CONSTRAINT [FK_Solved_Challenge]
+GO
+ALTER TABLE [dbo].[Solved]  WITH CHECK ADD  CONSTRAINT [FK_Solved_User] FOREIGN KEY([User_ID])
+REFERENCES [dbo].[User] ([User_ID])
+GO
+
+ALTER TABLE [dbo].[Solved] CHECK CONSTRAINT [FK_Solved_User]

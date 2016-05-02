@@ -128,6 +128,7 @@
     <Content Include="default.aspx" />
     <Content Include="fonts\Capture it.ttf" />
     <Content Include="main.Master" />
+    <None Include="Properties\PublishProfiles\CtfArmory - Web Deploy.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
