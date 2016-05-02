@@ -12,15 +12,15 @@
             var GraphData = [];
             for (var key in jsonObject) {
                 switch (key) {
-                    case "total":
+                    case "solved":
                         solveCount = jsonObject[key];
                         break;
-                    case "solved":
+                    case "total":
                         totalChallenges = jsonObject[key];
                         break;
                 }
             }
-            var percentage = solveCount / totalChallenges;
+            var percentage = (solveCount / totalChallenges) * 100;
             for(var x = 0; x < percentage; x++){
                 $("#TotalSolved").attr("aria-valuenow", x);
                 $("#TotalSolved").width(x + '%');

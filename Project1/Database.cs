@@ -524,11 +524,47 @@ namespace Project1
             return ChallengeCount;
         }
 
+        public static int getSolvedCount(int UID)
+        {
+            int solved = 0;
+            SqlConnection db = new SqlConnection(ConfigurationManager.ConnectionStrings["CTFConnectionString"].ToString());
+            SqlCommand command = new SqlCommand();
+            command.CommandType = System.Data.CommandType.Text;
+
+            command.CommandText = $"SELECT [Solved_ID] FROM[CTF].[dbo].[Solved] WHERE[User_ID] = {UID}";
+            command.Connection = db;
+
+            db.Open();
+
+            try
+            {
+                using (SqlDataReader rdr = command.ExecuteReader())
+                {
+                    if (rdr.HasRows)
+                    {
+                        while (rdr.Read())
+                        {
+                            IDataRecord record = ((IDataRecord)rdr);
+                            solved++;
+                        }
+                    }
+                }
+            }
+            catch
+            {
+            }
+            finally
+            {
+                db.Close();
+            }
+            return solved;
+        }
+
         public static Dictionary<String,int> getUserProgress(int UID)
         {
             Dictionary<String, int> userProgress = new Dictionary<String, int>();
             userProgress.Add("total", ChallengesCount());
-            userProgress.Add("solved", getSolvedChallengesbyUserID(UID).Count);
+            userProgress.Add("solved", getSolvedCount(UID));
             return userProgress;
         }
     }
