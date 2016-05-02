@@ -451,5 +451,85 @@ namespace Project1
                 db.Close();
             }
         }
+
+        public static Dictionary<String,int> GetTopTenUsers()
+        {
+            Dictionary<String, int> UserValues = new Dictionary<String, int>();
+            //
+            SqlConnection db = new SqlConnection(ConfigurationManager.ConnectionStrings["CTFConnectionString"].ToString());
+            SqlCommand command = new SqlCommand();
+            command.CommandType = System.Data.CommandType.Text;
+
+            command.CommandText = $"SELECT TOP(10) SUM(dbo.Challenge.Challenge_Points) AS Expr1, dbo.[User].User_UserName FROM dbo.[User] LEFT OUTER JOIN dbo.Solved ON dbo.[User].User_ID = dbo.Solved.User_ID INNER JOIN dbo.Challenge ON dbo.Solved.Challenge_ID = dbo.Challenge.Challenge_ID GROUP BY dbo.[User].User_UserName";
+            command.Connection = db;
+
+            db.Open();
+
+            try
+            {
+                using (SqlDataReader rdr = command.ExecuteReader())
+                {
+                    if (rdr.HasRows)
+                    {
+                        while (rdr.Read())
+                        {
+                            IDataRecord record = ((IDataRecord)rdr);
+                            UserValues.Add(record[1].ToString(), Convert.ToInt32(record[0].ToString()));
+                        }
+                    }
+                }
+            }
+            catch
+            {
+            }
+            finally
+            {
+                db.Close();
+            }
+            return UserValues;
+        }
+        public static int ChallengesCount()
+        {
+            int ChallengeCount = 0;
+            SqlConnection db = new SqlConnection(ConfigurationManager.ConnectionStrings["CTFConnectionString"].ToString());
+            SqlCommand command = new SqlCommand();
+            command.CommandType = System.Data.CommandType.Text;
+
+            command.CommandText = $"SELECT [Challenge_ID] FROM [CTF].[dbo].[Challenge]";
+            command.Connection = db;
+
+            db.Open();
+
+            try
+            {
+                using (SqlDataReader rdr = command.ExecuteReader())
+                {
+                    if (rdr.HasRows)
+                    {
+                        while (rdr.Read())
+                        {
+                            IDataRecord record = ((IDataRecord)rdr);
+                            ChallengeCount++;
+                        }
+                    }
+                }
+            }
+            catch
+            {
+            }
+            finally
+            {
+                db.Close();
+            }
+            return ChallengeCount;
+        }
+
+        public static Dictionary<String,int> getUserProgress(int UID)
+        {
+            Dictionary<String, int> userProgress = new Dictionary<String, int>();
+            userProgress.Add("total", ChallengesCount());
+            userProgress.Add("solved", getSolvedChallengesbyUserID(UID).Count);
+            return userProgress;
+        }
     }
 }

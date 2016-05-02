@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Script.Serialization;
+using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -70,6 +72,12 @@ namespace Project1.GameBoard
             ChallengeSqlDataSource.InsertParameters["Challenge_Solution"].DefaultValue = ((TextBox)ChallengesGridView.FooterRow.FindControl("InsertChallengeSolution")).Text;
             ChallengeSqlDataSource.InsertParameters["Challenge_Question"].DefaultValue = ((TextBox)ChallengesGridView.FooterRow.FindControl("InsertChallengeQuestion")).Text;
             ChallengeSqlDataSource.Insert();
+        }
+
+        [WebMethod]
+        public static String GetTopTen()
+        {
+            return new JavaScriptSerializer().Serialize(Database.GetTopTenUsers());
         }
     }
 }

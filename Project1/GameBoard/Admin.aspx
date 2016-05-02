@@ -1,15 +1,17 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/GameBoard/Site2.Master" AutoEventWireup="true" CodeBehind="Admin.aspx.cs" Inherits="Project1.GameBoard.WebForm7" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="LeftNavBarContentPlaceHolder" runat="server">
-        <li class="tab"><a href="#Users">Users</a></li>
-        <li class="tab"><a href="#Games">Games</a></li>
-        <li class="tab"><a href="#Categories">Categories</a></li>
-        <li class="tab"><a href="#Challenges">Challenges</a></li>
+    <li class="tab"><a href="#Users">Users</a></li>
+    <li class="tab"><a href="#Games">Games</a></li>
+    <li class="tab"><a href="#Categories">Categories</a></li>
+    <li class="tab"><a href="#Challenges">Challenges</a></li>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="tab-content">
         <%--Dashboard--%>
         <div id="Dashboard">
             <h1 class="page-header">Dashboard</h1>
+            <div class="col-md-3" id="UsersbyPoints" style="height: 300px; width: 100%;"></div>
         </div>
         <%--Users--%>
         <div id="Users" style="display: none;">
@@ -248,11 +250,11 @@
                 </asp:GridView>
                 <asp:ValidationSummary ID="ValidationSummary3" ValidationGroup="EditCategoryValidationGroup" ForeColor="Red" runat="server" />
                 <asp:ValidationSummary ID="ValidationSummary4" ValidationGroup="InsertCategoryValidationGroup" ForeColor="Red" runat="server" />
-                <asp:SqlDataSource ID="CategoriesSqlDataSource" runat="server" 
-                    DeleteCommand="DELETE FROM [Category] WHERE [Category_ID] = @Category_ID" 
-                    InsertCommand="INSERT INTO [Category] ([Game_ID], [Category_Name]) VALUES (@Game_ID, @Category_Name)" 
-                    SelectCommand="SELECT [Category].[Category_ID], [Category].[Category_Name], [Game].[Game_Name], [Game].[Game_ID] FROM [Category] INNER JOIN [Game] ON [Category].[Game_ID] = [Game].[Game_ID]" 
-                    UpdateCommand="UPDATE [Category] SET [Game_ID] = @Game_ID, [Category_Name] = @Category_Name WHERE [Category_ID] = @Category_ID" 
+                <asp:SqlDataSource ID="CategoriesSqlDataSource" runat="server"
+                    DeleteCommand="DELETE FROM [Category] WHERE [Category_ID] = @Category_ID"
+                    InsertCommand="INSERT INTO [Category] ([Game_ID], [Category_Name]) VALUES (@Game_ID, @Category_Name)"
+                    SelectCommand="SELECT [Category].[Category_ID], [Category].[Category_Name], [Game].[Game_Name], [Game].[Game_ID] FROM [Category] INNER JOIN [Game] ON [Category].[Game_ID] = [Game].[Game_ID]"
+                    UpdateCommand="UPDATE [Category] SET [Game_ID] = @Game_ID, [Category_Name] = @Category_Name WHERE [Category_ID] = @Category_ID"
                     ConnectionString="<%$ ConnectionStrings:CTFConnectionString %>">
                     <DeleteParameters>
                         <asp:Parameter Name="Category_ID" Type="Int32" />
@@ -378,10 +380,10 @@
                 <asp:ValidationSummary ID="ValidationSummary5" ValidationGroup="EditChallengValidationGroup" ForeColor="Red" runat="server" />
                 <asp:ValidationSummary ID="ValidationSummary6" ValidationGroup="InsertChallengeValidationGroup" ForeColor="Red" runat="server" />
                 <asp:SqlDataSource ID="ChallengeSqlDataSource" runat="server"
-                    ConnectionString="<%$ ConnectionStrings:CTFConnectionString %>" 
-                    DeleteCommand="DELETE FROM [Challenge] WHERE [Challenge_ID] = @Challenge_ID" 
-                    InsertCommand="INSERT INTO [Challenge] ([Category_ID], [Challenge_Name], [Challenge_Points], [Challenge_Answer], [Challenge_Solution], [Challenge_Question]) VALUES (@Category_ID, @Challenge_Name, @Challenge_Points, @Challenge_Answer, @Challenge_Solution, @Challenge_Question)" 
-                    SelectCommand="SELECT [Challenge].[Challenge_ID], [Challenge].[Challenge_Name], [Challenge].[Challenge_Points], [Challenge].[Challenge_Answer], [Challenge].[Challenge_Solution], [Challenge].[Challenge_Question], [Category].[Category_Name], [Category].[Category_ID] FROM [Challenge] INNER JOIN [Category] ON [Challenge].[Category_ID] = [Category].[Category_ID]" 
+                    ConnectionString="<%$ ConnectionStrings:CTFConnectionString %>"
+                    DeleteCommand="DELETE FROM [Challenge] WHERE [Challenge_ID] = @Challenge_ID"
+                    InsertCommand="INSERT INTO [Challenge] ([Category_ID], [Challenge_Name], [Challenge_Points], [Challenge_Answer], [Challenge_Solution], [Challenge_Question]) VALUES (@Category_ID, @Challenge_Name, @Challenge_Points, @Challenge_Answer, @Challenge_Solution, @Challenge_Question)"
+                    SelectCommand="SELECT [Challenge].[Challenge_ID], [Challenge].[Challenge_Name], [Challenge].[Challenge_Points], [Challenge].[Challenge_Answer], [Challenge].[Challenge_Solution], [Challenge].[Challenge_Question], [Category].[Category_Name], [Category].[Category_ID] FROM [Challenge] INNER JOIN [Category] ON [Challenge].[Category_ID] = [Category].[Category_ID]"
                     UpdateCommand="UPDATE [Challenge] SET [Category_ID] = @Category_ID, [Challenge_Name] = @Challenge_Name, [Challenge_Points] = @Challenge_Points, [Challenge_Answer] = @Challenge_Answer, [Challenge_Solution] = @Challenge_Solution, [Challenge_Question] = @Challenge_Question WHERE [Challenge_ID] = @Challenge_ID">
                     <DeleteParameters>
                         <asp:Parameter Name="Challenge_ID" Type="Int32" />
@@ -441,13 +443,13 @@
                         <asp:TextBox ID="User_EmailTextBox" CssClass="form-control" runat="server" Text='<%# Bind("User_Email") %>' />
                         <asp:RequiredFieldValidator ID="User_EmailTextBoxRequiredFieldValidator" runat="server" Text="*" ErrorMessage="User's Email is required" ControlToValidate="User_EmailTextBox" ForeColor="Red" ValidationGroup="InsertSingleUserValidationGroup"></asp:RequiredFieldValidator>
                     </div>
-                    <asp:LinkButton ID="UpdateButton" CssClass="btn btn-primary" runat="server" CausesValidation="True" CommandName="Update" Text="Update" ValidationGroup="InsertSingleUserValidationGroup"/>
+                    <asp:LinkButton ID="UpdateButton" CssClass="btn btn-primary" runat="server" CausesValidation="True" CommandName="Update" Text="Update" ValidationGroup="InsertSingleUserValidationGroup" />
                 </EditItemTemplate>
             </asp:FormView>
             <asp:ValidationSummary ID="ValidationSummary7" ValidationGroup="InsertSingleUserValidationGroup" ForeColor="Red" runat="server" />
-            <asp:SqlDataSource ID="SqlDataSource1" runat="server" 
-                ConnectionString="<%$ ConnectionStrings:CTFConnectionString %>" 
-                SelectCommand="SELECT * FROM [User] WHERE ([User_ID] = @User_ID)" 
+            <asp:SqlDataSource ID="SqlDataSource1" runat="server"
+                ConnectionString="<%$ ConnectionStrings:CTFConnectionString %>"
+                SelectCommand="SELECT * FROM [User] WHERE ([User_ID] = @User_ID)"
                 UpdateCommand="UPDATE [User] SET [User_UserName] = @User_UserName, [User_Password] = @User_Password, [User_FirstName] = @User_FirstName, [User_LastName] = @User_LastName, [User_Email] = @User_Email WHERE [User_ID] = @User_ID">
                 <SelectParameters>
                     <asp:SessionParameter Name="User_ID" SessionField="UID" Type="Int32" />
@@ -474,4 +476,7 @@
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="../js/bootstrap.min.js"></script>
     <script src="../js/login.js"></script>
+    <script src="../js/canvasjs.min.js"></script>
+    <script src="../js/drawAdminGraphs.js"></script>
+    <script>$(document).ready(function () { UsersByPoints() });</script>
 </asp:Content>

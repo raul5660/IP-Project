@@ -44,11 +44,3 @@ $('.tab a').on('click', function (e) {
     $(target).fadeIn(600);
 
 });
-
-$(document).ready(function () {
-    var show = localStorage.getItem('show');
-    if (show) {
-        $('#Dashboard').fadeOut(500);
-        $(show).fadeIn(500);
-    }
-});

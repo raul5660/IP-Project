@@ -1,4 +1,7 @@
 ﻿$(document).ready(function () {
+    UsersProgress();
+    UsersByPoints();
+    var x = 0;
     $("#MainSideNavBar a").each(function (index) {
         $.ajax({
             type: "POST",
@@ -23,9 +26,10 @@
 
                 });
                 var show = localStorage.getItem('show');
-                if (show) {
+                if (show && x == 0) {
                     $('#Dashboard').fadeOut(500);
                     $(show).fadeIn(500);
+                    x++;
                 }
                 $(".form-inline #Submission").on('click', function (e) {
                     var target = $(this).attr('data-target');
@@ -42,6 +46,8 @@
                                 $('#' + target + 'S').addClass("success")
                                 $('#' + target + 'Submission').prop('disabled', true);
                                 $('#' + target + 'Submission').parent().addClass("has-success");
+                                UsersProgress();
+                                UsersByPoints();
                             } else {
                                 $('#' + target + 'Submission').parent().addClass("has-error");
                             }

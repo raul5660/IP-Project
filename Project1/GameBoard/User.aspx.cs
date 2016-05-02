@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Web;
+using System.Web.Script.Serialization;
 using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -83,6 +84,10 @@ namespace Project1.GameBoard
             }
             return "false";
         }
-
+        [WebMethod]
+        public static String GetUsersProgress()
+        {
+            return new JavaScriptSerializer().Serialize(Database.getUserProgress(user.ID));
+        }
     }
 }

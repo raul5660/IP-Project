@@ -19,6 +19,16 @@
         <%--Dashboard--%>
         <div id="Dashboard">
             <h1 class="page-header">Dashboard</h1>
+            <div class="col-md-3" id="UsersbyPoints" style="height: 300px; width: 100%;"></div>
+           <%-- <div class="col-md-3" id="UserStanding" style="height: 300px;"> test</div>--%>
+            <h3 class="page-header">Your Progress</h3>
+            <div class="col-md-10">
+                <div class="progress">
+                    <div class="progress-bar progress-bar-striped active" id="TotalSolved" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
+                        0%
+                    </div>
+                </div>
+            </div>
         </div>
         <%--Profile--%>
         <div id="Profile" style="display: none;">
@@ -87,4 +97,6 @@
     <script src="../js/bootstrap.min.js"></script>
     <script src="../js/loadGameData.js"></script>
     <script src="../js/login.js"></script>
+    <script src="../js/canvasjs.min.js"></script>
+    <script src="../js/drawUserGraphs.js"></script>
 </asp:Content>

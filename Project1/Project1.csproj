@@ -106,6 +106,9 @@
     <Content Include="GameBoard\User.aspx" />
     <Content Include="js\bootstrap.js" />
     <Content Include="js\bootstrap.min.js" />
+    <Content Include="js\canvasjs.min.js" />
+    <Content Include="js\drawAdminGraphs.js" />
+    <Content Include="js\drawUserGraphs.js" />
     <Content Include="js\jquery.js" />
     <Content Include="js\loadGameData.js" />
     <Content Include="js\login.js" />
