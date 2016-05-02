@@ -31,8 +31,10 @@ $(document).ready(function () {
                 var show = localStorage.getItem('show');
                 if (show) {
                     if (!$(show).is(":visible")) {
-                        $('#Dashboard').fadeOut(500);
-                        $(show).fadeIn(500);
+                        if (show != "#Help") {
+                            $('#Dashboard').fadeOut(500);
+                            $(show).fadeIn(500);
+                        }
                     }
                 }
                 $(".form-inline #Submission").on('click', function (e) {
