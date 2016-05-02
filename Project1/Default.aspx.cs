@@ -11,7 +11,26 @@ namespace Project1
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            try
+            {
+                HttpCookie CookieSession = Request.Cookies.Get("UserSession");
+                Session["UID"] = CookieSession.Value.ToString();
+                if (Database.IsSessionValid(CookieSession))
+                {
+                    String type = Database.GetUserType(CookieSession.Value.ToString());
+                    if (type == "user")
+                    {
+                        Response.Redirect("./GameBoard/User.aspx");
+                    }
+                    else if (type.ToLower() == "admin")
+                    {
+                        Response.Redirect("./GameBoard/Admin.aspx");
+                    }
+                }
+            }
+            catch
+            {
+            }
         }
 
         protected void ButtonSignUp_Click(object sender, EventArgs e)
