@@ -31,7 +31,7 @@ body {
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
-    background-attachment:fixed;
+    background-attachment: fixed;
 }
 
 a {
@@ -45,6 +45,8 @@ a {
         color: #179b77;
     }
 
+
+/*styling for modal popup*/
 .form {
     background: rgba(30, 30, 30, 0.9);
     padding: 25px;
@@ -210,3 +212,4 @@ textarea {
     margin-top: -20px;
     text-align: right;
 }
+/* End modal styling */

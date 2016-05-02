@@ -7,7 +7,6 @@
     <title>C.T.F Armory</title>
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet" />
-
     <!-- Custom styles for this template -->
     <link href="css/jumbotron.css" rel="stylesheet" />
 
@@ -35,9 +34,9 @@
                 </div>
                 <div id="navbar" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li><a href="Default.aspx">HOME</a></li>
-                        <li><a href="#about">ABOUT</a></li>
-                        <li><a href="#contact">CONTACT</a></li>
+                       <%-- <li><a href="Default.aspx">HOME</a></li>--%>
+                        <li><a href="about.aspx">ABOUT</a></li>
+                        <li><a href="contact.aspx">CONTACT</a></li>
                     </ul>
                 </div>
                 <!--/.navbar-collapse -->
