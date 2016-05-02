@@ -7,6 +7,8 @@ using System.Web.Script.Serialization;
 using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Net;
+using System.Net.Mail;
 
 namespace Project1.GameBoard
 {
@@ -88,6 +90,38 @@ namespace Project1.GameBoard
         public static String GetUsersProgress()
         {
             return new JavaScriptSerializer().Serialize(Database.getUserProgress(user.ID));
+        }
+
+        protected void SendEmail(object sender, EventArgs e)
+        {
+            string from = user.Email;
+            string to = "internetprogrammingproject@gmail.com";
+            string subject = txtSubject.Text;
+            string body = txtBody.Text;
+
+            if (body != "" && subject != "")
+            {
+                using (MailMessage mm = new MailMessage(from, to))
+                {
+                    mm.Subject = txtSubject.Text;
+                    mm.Body = txtBody.Text;
+                    if (fuAttachment.HasFile)
+                    {
+                        string FileName = System.IO.Path.GetFileName(fuAttachment.PostedFile.FileName);
+                        mm.Attachments.Add(new Attachment(fuAttachment.PostedFile.InputStream, FileName));
+                    }
+                    mm.IsBodyHtml = false;
+                    SmtpClient smtp = new SmtpClient();
+                    smtp.Host = "smtp.gmail.com";
+                    smtp.EnableSsl = true;
+                    NetworkCredential NetworkCred = new NetworkCredential(to, "Defense08$");
+                    smtp.UseDefaultCredentials = true;
+                    smtp.Credentials = NetworkCred;
+                    smtp.Port = 587;
+                    smtp.Send(mm);
+                    ClientScript.RegisterStartupScript(GetType(), "alert", "alert('Email sent.');", true);
+                }
+            }
         }
     }
 }

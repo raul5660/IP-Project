@@ -1,18 +1,21 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/GameBoard/Site2.Master" AutoEventWireup="true" CodeBehind="User.aspx.cs" Inherits="Project1.GameBoard.WebForm1" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="LeftNavBarContentPlaceHolder" runat="server">
-    <asp:ListView ID="Games" runat="server" DataKeyNames="Game_ID" DataSourceID="GamesSelect">
+    <asp:listview id="Games" runat="server" datakeynames="Game_ID" datasourceid="GamesSelect">
         <EmptyDataTemplate>
             No data was returned.
+       
         </EmptyDataTemplate>
         <ItemSeparatorTemplate>
         </ItemSeparatorTemplate>
         <ItemTemplate>
             <li class="tab">
-                <a href='#<%# Eval("Game_ID") %>' ><asp:Label ID="Game_NameLabel" runat="server" Text='<%# Eval("Game_Name") %>'/></a>
+                <a href='#<%# Eval("Game_ID") %>'>
+                    <asp:Label ID="Game_NameLabel" runat="server" Text='<%# Eval("Game_Name") %>' /></a>
             </li>
         </ItemTemplate>
-    </asp:ListView>
-    <asp:SqlDataSource ID="GamesSelect" runat="server" ConnectionString="<%$ ConnectionStrings:CTFConnectionString %>" SelectCommand="SELECT * FROM [Game]"></asp:SqlDataSource>
+    </asp:listview>
+    <asp:sqldatasource id="GamesSelect" runat="server" connectionstring="<%$ ConnectionStrings:CTFConnectionString %>" selectcommand="SELECT * FROM [Game]"></asp:sqldatasource>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div id="MainContentHolder" class="tab-content">
@@ -20,12 +23,13 @@
         <div id="Dashboard">
             <h1 class="page-header">Dashboard</h1>
             <div class="col-md-3" id="UsersbyPoints" style="height: 300px; width: 100%;"></div>
-           <%-- <div class="col-md-3" id="UserStanding" style="height: 300px;"> test</div>--%>
+            <%-- <div class="col-md-3" id="UserStanding" style="height: 300px;"> test</div>--%>
             <h3 class="page-header">Your Progress</h3>
             <div class="col-md-10">
                 <div class="progress">
                     <div class="progress-bar progress-bar-striped active" id="TotalSolved" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
                         0%
+                   
                     </div>
                 </div>
             </div>
@@ -33,7 +37,7 @@
         <%--Profile--%>
         <div id="Profile" style="display: none;">
             <h1 class="page-header">Profile</h1>
-            <asp:FormView ID="ProfileFormView" runat="server" DataKeyNames="User_ID" DataSourceID="SqlDataSource1">
+            <asp:formview id="ProfileFormView" runat="server" datakeynames="User_ID" datasourceid="SqlDataSource1">
                 <EditItemTemplate>
                     <div class="form-group">
                         <label for="User_IDLabel1">User ID</label>
@@ -64,14 +68,14 @@
                         <asp:TextBox ID="User_EmailTextBox" CssClass="form-control" runat="server" Text='<%# Bind("User_Email") %>' />
                         <asp:RequiredFieldValidator ID="User_EmailTextBoxRequiredFieldValidator" runat="server" Text="*" ErrorMessage="User's Email is required" ControlToValidate="User_EmailTextBox" ForeColor="Red" ValidationGroup="InsertSingleUserValidationGroup"></asp:RequiredFieldValidator>
                     </div>
-                    <asp:LinkButton ID="UpdateButton" CssClass="btn btn-primary" runat="server" CausesValidation="True" CommandName="Update" Text="Update" ValidationGroup="InsertSingleUserValidationGroup"/>
+                    <asp:LinkButton ID="UpdateButton" CssClass="btn btn-primary" runat="server" CausesValidation="True" CommandName="Update" Text="Update" ValidationGroup="InsertSingleUserValidationGroup" />
                 </EditItemTemplate>
-            </asp:FormView>
-            <asp:ValidationSummary ID="ValidationSummary7" ValidationGroup="InsertSingleUserValidationGroup" ForeColor="Red" runat="server" />
-            <asp:SqlDataSource ID="SqlDataSource1" runat="server" 
-                ConnectionString="<%$ ConnectionStrings:CTFConnectionString %>" 
-                SelectCommand="SELECT * FROM [User] WHERE ([User_ID] = @User_ID)" 
-                UpdateCommand="UPDATE [User] SET [User_UserName] = @User_UserName, [User_Password] = @User_Password, [User_FirstName] = @User_FirstName, [User_LastName] = @User_LastName, [User_Email] = @User_Email WHERE [User_ID] = @User_ID">
+            </asp:formview>
+            <asp:validationsummary id="ValidationSummary7" validationgroup="InsertSingleUserValidationGroup" forecolor="Red" runat="server" />
+            <asp:sqldatasource id="SqlDataSource1" runat="server"
+                connectionstring="<%$ ConnectionStrings:CTFConnectionString %>"
+                selectcommand="SELECT * FROM [User] WHERE ([User_ID] = @User_ID)"
+                updatecommand="UPDATE [User] SET [User_UserName] = @User_UserName, [User_Password] = @User_Password, [User_FirstName] = @User_FirstName, [User_LastName] = @User_LastName, [User_Email] = @User_Email WHERE [User_ID] = @User_ID">
                 <SelectParameters>
                     <asp:SessionParameter Name="User_ID" SessionField="UID" Type="Int32" />
                 </SelectParameters>
@@ -84,11 +88,27 @@
                     <asp:Parameter Name="User_AccountType" Type="String" />
                     <asp:Parameter Name="User_ID" Type="Int32" />
                 </UpdateParameters>
-            </asp:SqlDataSource>
+            </asp:sqldatasource>
         </div>
         <%--Help--%>
         <div id="Help" style="display: none;">
             <h1 class="page-header">Help</h1>
+            <%--User contact form--%>
+            <div class="table-responsive">
+                <div class="form-group" style="width:500px;">
+                    <label for="txtSubject">Subject</label>
+                    <asp:textbox id="txtSubject" class="form-control" runat="server"></asp:textbox>
+                </div>
+                <div class="form-group">
+                    <label for="txtBody">Message</label>
+                    <asp:textbox id="txtBody" runat="server" textmode="MultiLine" class="form-control" height="150" width="500"></asp:textbox>
+                </div>
+                <div class="form-group">
+                    <label for="fuAttachment">File Attachment</label>
+                    <asp:fileupload id="fuAttachment" runat="server" />
+                </div>
+                <asp:button text="Send" onclick="SendEmail" runat="server" class="btn btn-default"/>
+            </div>
         </div>
     </div>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
