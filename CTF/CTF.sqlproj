@@ -69,4 +69,7 @@
     <Build Include="dbo\Tables\User.sql" />
     <None Include="Scripts\ScriptsIgnoredOnImport.sql" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="CTF.publish.xml" />
+  </ItemGroup>
 </Project>

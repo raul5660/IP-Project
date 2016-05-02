@@ -441,7 +441,10 @@ namespace Project1
 
             try
             {
-                command.ExecuteNonQuery();
+                if (!isAlreadySumbitted(UserID, ChallengeID))
+                {
+                    command.ExecuteNonQuery();
+                }
             }
             catch
             {
@@ -450,6 +453,35 @@ namespace Project1
             {
                 db.Close();
             }
+        }
+
+        public static Boolean isAlreadySumbitted(int UserID, int ChallengeID)
+        {
+            SqlConnection db = new SqlConnection(ConfigurationManager.ConnectionStrings["CTFConnectionString"].ToString());
+            SqlCommand command = new SqlCommand();
+            command.CommandType = System.Data.CommandType.Text;
+
+            command.CommandText = $"SELECT * FROM [dbo].[Solved] WHERE [User_ID] = {UserID} AND [Challenge_ID] = {ChallengeID}";
+            command.Connection = db;
+
+            db.Open();
+
+            try
+            {
+                using (SqlDataReader rdr = command.ExecuteReader())
+                {
+                    return (rdr.HasRows);
+                }
+            }
+            catch
+            {
+            }
+            finally
+            {
+                db.Close();
+            }
+
+            return false;
         }
 
         public static Dictionary<String,int> GetTopTenUsers()
